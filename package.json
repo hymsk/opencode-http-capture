@@ -1,0 +1,16 @@
+{
+  "name": "opencode-http-capture",
+  "version": "0.1.0",
+  "description": "A local OpenCode plugin that captures and blocks model HTTP requests.",
+  "license": "AGPL-3.0-or-later",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test test/plugin.test.mjs"
+  },
+  "peerDependencies": {
+    "@opencode-ai/plugin": ">=0.13.7"
+  }
+}
