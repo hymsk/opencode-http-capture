@@ -4,11 +4,11 @@
 
 ## 安全边界
 
-- 插件默认关闭，只有 `OPENCODE_CAPTURE=1` 或 `true` 才启用。
-- 启用后只捕获模型请求，捕获文件脱敏后写入临时目录，并阻断模型请求。
-- 不使用代理，不调用真实 provider；非模型请求仍按原 fetch 转发。
+- 插件默认关闭；`OPENCODE_CAPTURE` 未设置、空字符串、`false`、`0` 均关闭；`block` 只捕获并阻断模型请求；`record` 透传录制 model；`all` 透传录制 all。
+- 仅 legacy `1` / `true` 读取 MODE/SCOPE，保留旧组合及默认 block/model；新命名模式完全忽略旧 MODE/SCOPE。其他非空 CAPTURE 值须抛明确配置错误，不得静默关闭；目录与录制大小仍可选。
+- 不使用代理；block 模式不得转发捕获的模型请求，record 模式会调用真实 provider，录制失败不得阻断真实流量。
 - 以 `SPEC.md` 为当前行为契约；实现、测试和文档必须与其一致。
-- 不记录、提交或输出 API key、token、cookie、私钥等敏感凭据。
+- 请求和响应元数据（包括 headers）中的凭据继续脱敏；record 模式响应正文不脱敏，按 SPEC 保留真实内容，使用者承担其中敏感信息的风险。开发测试只用虚构凭据，不提交或公开真实捕获数据。
 - 不修改原始 Session；使用者应通过 `--fork` 运行目标 Session。
 
 ## 开发要求

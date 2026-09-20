@@ -1,12 +1,12 @@
 import { mkdtemp, writeFile } from "node:fs/promises"
 import { join, resolve } from "node:path"
 import { tmpdir } from "node:os"
-const secret = /^(authorization|proxy-authorization|.*api[-_]?key|.*token|.*secret|password|cookie|set-cookie)$/i
+const secret = /^(authorization|proxy-authorization|.*api[-_]?key|.*private[-_]?key|.*secret[-_]?access[-_]?key|.*token|.*secret|password|cookie|set-cookie)$/i
 export function redact(value: unknown, key = ""): unknown {
   if (secret.test(key)) return "[REDACTED]"
   if (Array.isArray(value)) return value.map((item) => redact(item))
   if (value && typeof value === "object") return Object.fromEntries(Object.entries(value).map(([k, v]) => [k, redact(v, k)]))
-  if (typeof value === "string") return value.replace(/https?:\/\/[^\s<>"'`]+/gi, "[URL_REDACTED]").replace(/\bBearer\s+[^\s"']+/gi, "Bearer [REDACTED]").replace(/\b(?:sk-[\w-]+|ghp_[\w]+|github_pat_[\w]+)\b/g, "[REDACTED]")
+  if (typeof value === "string") return value.replace(/-----BEGIN (?:[A-Z0-9]+ )*PRIVATE KEY-----[\s\S]*?(?:-----END (?:[A-Z0-9]+ )*PRIVATE KEY-----|$)/g, "[REDACTED]").replace(/https?:\/\/[^\s<>"'`]+/gi, "[URL_REDACTED]").replace(/\bBearer\s+[^\s"']+/gi, "Bearer [REDACTED]").replace(/\b(?:sk-[\w-]+|ghp_[\w]+|github_pat_[\w]+)\b/g, "[REDACTED]")
   return value
 }
 export function pathResponse(body: Record<string, any>, file: string, pathname: string): Response {
