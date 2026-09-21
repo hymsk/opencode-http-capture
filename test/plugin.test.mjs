@@ -3,9 +3,9 @@ import assert from "node:assert/strict"
 import { mkdtemp, readFile, readdir, rm, stat } from "node:fs/promises"
 import { tmpdir } from "node:os"
 import { join } from "node:path"
-import { installCapture, redact } from "../src/plugin.ts"
-import { installRecorder } from "../src/record.ts"
-import entry from "../src/entry.ts"
+import { installCapture, redact } from "../dist/plugin.js"
+import { installRecorder } from "../dist/record.js"
+import entry from "../dist/entry.js"
 
 const entryEnv = ["OPENCODE_CAPTURE", "OPENCODE_CAPTURE_MODE", "OPENCODE_CAPTURE_DIR", "OPENCODE_CAPTURE_SCOPE", "OPENCODE_CAPTURE_MAX_BYTES"]
 const installedKey = Symbol.for("opencode-http-capture.installed")

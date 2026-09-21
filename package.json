@@ -1,16 +1,39 @@
 {
   "name": "opencode-http-capture",
-  "version": "0.1.0",
-  "description": "A local OpenCode plugin that captures and blocks model HTTP requests.",
+  "version": "0.1.1",
+  "description": "An opt-in OpenCode plugin to block model HTTP requests or record streaming requests and responses without a proxy.",
   "license": "AGPL-3.0-or-later",
+  "author": {
+    "name": "hymsk",
+    "email": "lxj_hymsk@163.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hymsk/opencode-http-capture.git"
+  },
+  "homepage": "https://github.com/hymsk/opencode-http-capture#readme",
+  "bugs": {
+    "url": "https://github.com/hymsk/opencode-http-capture/issues"
+  },
+  "keywords": ["opencode", "opencode-plugin", "http", "capture", "debugging"],
   "type": "module",
+  "main": "./dist/entry.js",
+  "exports": {
+    ".": "./dist/entry.js"
+  },
+  "files": ["dist/", "README.md", "README.zh-cn.md", "SPEC.md", "CHANGELOG.md", "RELEASING.md", "LICENSE"],
   "engines": {
-    "node": ">=20"
+    "node": ">=24"
   },
   "scripts": {
-    "test": "node --test test/plugin.test.mjs"
+    "build": "node scripts/build.mjs",
+    "test": "npm run build && node --test test/*.test.mjs",
+    "test:host": "npm run build && node scripts/test-host.mjs",
+    "prepack": "npm run build",
+    "prepublishOnly": "npm test"
   },
-  "peerDependencies": {
-    "@opencode-ai/plugin": ">=0.13.7"
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   }
 }
