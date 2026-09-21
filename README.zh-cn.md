@@ -24,9 +24,9 @@
 
 ### npm（推荐）
 
-`0.1.1` 是首个 npm 发布目标版本；正式发布前请使用下方的本地安装方式。
+[`0.1.1`](https://www.npmjs.com/package/opencode-http-capture/v/0.1.1) 已作为首个 npm 版本发布；下方的本地源码安装方式仍然保留。
 
-**第一步：配置插件。** 发布后，在项目的 `opencode.json`（仅该项目）或 `~/.config/opencode/opencode.json`（全局）的 `plugin` 数组中添加包名。选择一种作用范围，保留已有 provider、插件等配置，不要用下面的最小示例覆盖整个配置文件：
+**第一步：配置插件。** 在项目的 `opencode.json`（仅该项目）或 `~/.config/opencode/opencode.json`（全局）的 `plugin` 数组中添加包名。选择一种作用范围，保留已有 provider、插件等配置，不要用下面的最小示例覆盖整个配置文件：
 
 ```json
 {

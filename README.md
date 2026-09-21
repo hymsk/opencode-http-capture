@@ -24,9 +24,9 @@ Requirements: OpenCode v1 with external plugin support.
 
 ### npm (recommended)
 
-`0.1.1` is the first npm release target. Until it is published, use the local installation below.
+[`0.1.1`](https://www.npmjs.com/package/opencode-http-capture/v/0.1.1) is the first npm release. Local checkout installation remains available below.
 
-**Step 1: Configure the plugin.** After publication, add the package to the `plugin` array in project-level `opencode.json` or global `~/.config/opencode/opencode.json`. Choose one scope and keep your existing provider and plugin configuration; do not replace your entire configuration with this minimal example:
+**Step 1: Configure the plugin.** Add the package to the `plugin` array in project-level `opencode.json` or global `~/.config/opencode/opencode.json`. Choose one scope and keep your existing provider and plugin configuration; do not replace your entire configuration with this minimal example:
 
 ```json
 {
